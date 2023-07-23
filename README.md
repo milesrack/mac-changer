@@ -5,7 +5,7 @@ A Python script to change your MAC address to a random value or specify a new on
 ```
 git clone https://github.com/milesrack/mac-changer
 cd mac-changer
-sudo python3 setup.py install
+pipx install .
 ```
 
 ## Usage
@@ -22,4 +22,22 @@ options:
   -a ADDRESS, --address ADDRESS
                         New MAC address
   -l, --list            List available interfaces
+```
+
+## Examples
+Random MAC address for all valid wireless and ethernet network interfaces:
+```
+sudo mac-changer
+```
+List available network interfaces:
+```
+sudo mac-changer --list
+```
+Random MAC address for `wlan0` interface:
+```
+sudo mac-changer -i wlan0
+```
+Set MAC address `12:34:56:78:9a:bc` for `wlan0` interface:
+```
+sudo mac-changer -i wlan0 -a 12:34:56:78:9a:bc
 ```

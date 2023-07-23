@@ -33,8 +33,9 @@ def change_mac(interface,address):
 	old_address = get_mac(interface)
 	p1 = subprocess.run(["ip","link","set","dev",interface,"down"],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 	p2 = subprocess.run(["ip","link","set","dev",interface,"address",address],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-	p3 = subprocess.run(["ip","link","set","dev",interface,"up"],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-	if p1.stderr or p2.stderr or p3.stderr:
+	p3 = subprocess.run(["rfkill","unblock","all"],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+	p4 = subprocess.run(["ip","link","set","dev",interface,"up"],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+	if p1.stderr or p2.stderr or p3.stderr or p4.stderr:
 		print(f"[!] Failed to change MAC address for {interface}")
 	else:
 		print(f"[+] {interface}: {old_address} => {address}")

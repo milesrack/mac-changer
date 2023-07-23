@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(
 	name="mac-changer",
@@ -8,5 +8,10 @@ setup(
 	url="https://github.com/milesrack/mac-changer",
 	license_files = ("LICENSE",),
 	install_requires=["argparse"],
-	scripts=["mac-changer"]
+    package_dir={"":"src"},
+    entry_points={
+        "console_scripts": [
+            "mac-changer=mac_changer:main.main"
+        ]
+    }
 )

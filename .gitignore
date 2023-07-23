@@ -1,0 +1,4 @@
+build/
+src/mac_changer.egg-info/
+src/mac_changer/__pycache__/
+mac_changer.egg-info/
